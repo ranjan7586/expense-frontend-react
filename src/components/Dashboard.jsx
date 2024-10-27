@@ -70,7 +70,7 @@ const Dashboard = () => {
         <SideBarMenu handleShow={handleShow} />
 
         {/* Main Content */}
-        {(recentPayments.length > 0 && todayTotal) ? (
+        {(recentPayments.length > 0 && todayTotal!=null) ? (
           <MainContent props={{ todayTotal, recentPayments }} />
         ) : (
           <div className="flex-grow">
