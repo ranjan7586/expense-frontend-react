@@ -55,7 +55,6 @@ const CreateModal = (prop) => {
                             placeholder="Transaction ID"
                             value={transactionId}
                             onChange={(e) => setTransactionId(e.target.value)}
-                            autoFocus
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="exampleForm.ControlInput3">
@@ -84,7 +83,6 @@ const CreateModal = (prop) => {
                             placeholder="Ex - Phonepe, Paytm"
                             value={paymentMethod}
                             onChange={(e) => setPaymentMethod(e.target.value)}
-                            autoFocus
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="paymentTo">
@@ -94,7 +92,6 @@ const CreateModal = (prop) => {
                             placeholder="Payment To"
                             value={paymentTo}
                             onChange={(e) => setPaymentTo(e.target.value)}
-                            autoFocus
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="paymentTo">
@@ -104,7 +101,7 @@ const CreateModal = (prop) => {
                             placeholder="Payment From"
                             value={paymentFrom}
                             onChange={(e) => setPaymentFrom(e.target.value)}
-                            autoFocus
+                            
                         />
                     </Form.Group>
                     <Form.Group className="mb-3" controlId="paymentFor">

@@ -10,6 +10,7 @@ import MainContent from "./parts/MainContent";
 const Dashboard = () => {
   const [recentPayments, setRecentPayments] = useState([]);
   const [todayTotal, setTodayTotal] = useState(0);
+  const [monthTotal, setMonthTotal] = useState(0);
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
@@ -27,10 +28,19 @@ const Dashboard = () => {
       toast.error("Something went wrong");
     }
   }
-  async function getTotalPaymentByDay(day) {
+  async function getTotalPaymentByDay(type) {
     try {
+      let date = new Date();
+      let day = date.getDay();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
       const { data } = await axiosInstance.post('/api/v1/payments/get-total-payment', {
-        total_type: day
+        total_type: type,
+        date: {
+          day,
+          month,
+          year
+        }
       })
       return data.total;
     } catch (error) {
@@ -43,6 +53,7 @@ const Dashboard = () => {
       const { data } = await axiosInstance.post('/api/v1/payments/create', obj);
       console.log(data);
       toast.success(data.message);
+      handleClose();
       callRecentAndTotalFuncs();
     } catch (error) {
       toast.error(error?.response?.data?.message);
@@ -54,6 +65,13 @@ const Dashboard = () => {
     getTotalPaymentByDay('today')
       .then((total) => {
         setTodayTotal(total); // Set the state with the resolved value
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+    getTotalPaymentByDay('month')
+      .then((total) => {
+        setMonthTotal(total); // Set the state with the resolved value
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
@@ -70,8 +88,8 @@ const Dashboard = () => {
         <SideBarMenu handleShow={handleShow} />
 
         {/* Main Content */}
-        {(recentPayments.length > 0 && todayTotal!=null) ? (
-          <MainContent props={{ todayTotal, recentPayments }} />
+        {(recentPayments.length > 0 && todayTotal != null) ? (
+          <MainContent props={{ todayTotal, monthTotal, recentPayments }} />
         ) : (
           <div className="flex-grow">
             <p>Loading...</p>
