@@ -101,6 +101,9 @@ const Dashboard = () => {
           <CreateModal handleClose={handleClose} createExpense={createExpense} />
         </Modal>
       </div >
+      <div>
+        
+      </div>
     </>
   );
 };

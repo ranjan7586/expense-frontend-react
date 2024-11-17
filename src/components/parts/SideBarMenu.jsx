@@ -14,7 +14,7 @@ const SideBarMenu = (prop) => {
                         <Button className="" onClick={prop.handleShow}>Add Expense</Button>
                     </li>
                     <li className="mb-4">
-                        <a href="/reports" className="block p-2 rounded hover:bg-gray-700">Reports</a>
+                        <a href="/reports" className="block p-2 rounded hover:bg-gray-700">Balance</a>
                     </li>
                     <li className="mb-4">
                         <NavLink to="/logout" className="block p-2 rounded hover:bg-gray-700">Logout</NavLink>
